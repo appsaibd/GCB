@@ -19,10 +19,12 @@
         .header-gradient {
             background: linear-gradient(to bottom, #166534, #14532d);
         }
+        .green-ribbon-gradient {
+            background: linear-gradient(to right, #064e3b, #059669, #064e3b);
+        }
         .card-shadow {
             box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
         }
-        /* Hide scrollbar for cleaner look on mobile but allow functionality */
         .no-scrollbar::-webkit-scrollbar {
             display: none;
         }
@@ -34,11 +36,90 @@
 </head>
 <body class="text-gray-800 antialiased">
 
+    <!-- Cover Image Section -->
+    <div class="w-full bg-white border-b border-gray-200">
+        <img src="https://raw.githubusercontent.com/appsaibd/GCB/main/cover.jpg" 
+             alt="Madrasa Cover" 
+             class="w-full h-auto object-cover max-h-48 md:max-h-96 mx-auto"
+             onerror="this.style.display='none'">
+    </div>
+
+    <!-- Top Quotes Section (New) -->
+    <div class="bg-gray-100 border-b border-gray-200 p-3 text-xs md:text-sm text-center md:flex md:justify-between md:px-6">
+        <div class="mb-2 md:mb-0 md:text-left text-gray-700 italic max-w-2xl">
+            "হে ঈমানদারগণ, তোমাদের উপর রোজা ফরজ করা হয়েছে; যেমনিভাবে তোমাদের পূর্ববর্তীদের উপর ফরজ করা হয়েছিল, যেন তোমরা খোদাভীতি অর্জন করতে পারো। - আল-কোরআন"
+        </div>
+        <div class="md:text-right font-semibold text-green-800">
+            "রোজা আমার জন্য আমি নিজেই এর প্রতিদান দিব। - আল-হাদিস (কুদসী)"
+        </div>
+    </div>
+
     <!-- Header Section -->
-    <header class="header-gradient text-white py-4 px-3 md:p-6 text-center shadow-lg border-b-4 border-yellow-500 sticky top-0 z-50">
-        <div class="max-w-4xl mx-auto">
-            <h1 class="text-2xl md:text-5xl font-bold mb-1 md:mb-2 leading-tight">পবিত্র মাহে রমজান এর সময়সূচি</h1>
-            <p class="text-sm md:text-lg text-yellow-200 font-semibold opacity-90">১৪৪৭ হিজরি - ২০২৬ ইংরেজি</p>
+    <header class="header-gradient text-white pt-6 pb-2 px-4 text-center shadow-lg border-b-4 border-yellow-500">
+        <div class="max-w-5xl mx-auto space-y-2 md:space-y-3">
+            
+            <!-- Arabic Salutation -->
+            <h3 class="arabic-text text-xl md:text-4xl text-yellow-300 font-medium drop-shadow-sm mb-2">اَلصَّلٰوةُ وَالسَّلَامُ عَلَيْكَ يَا رَسُوْلَ الله</h3>
+            
+            <!-- English & Arabic Name Line -->
+            <div class="text-[10px] md:text-sm text-yellow-100 opacity-90 tracking-wider font-medium uppercase">
+                <span class="block md:inline mb-1 md:mb-0">Jamea Ahmadia Sunnia Kamil Madrasah</span>
+                <span class="hidden md:inline mx-2">|</span>
+                <span class="block md:inline arabic-text text-base md:text-lg">مدرسة الجامعة الأحمدية السنية الكامل</span>
+            </div>
+
+            <!-- Main Bangla Name -->
+            <h1 class="text-2xl md:text-6xl font-bold leading-tight drop-shadow-md text-white py-1 font-serif">জামেয়া আহমদিয়া সুন্নিয়া কামিল মাদ্রাসা</h1>
+            
+            <!-- Address -->
+            <p class="text-base md:text-2xl font-medium opacity-90 text-yellow-50 bg-black/10 inline-block px-4 py-1 rounded">ষোলশহর, চট্টগ্রাম।</p>
+
+            <!-- Founders Banner (New) -->
+            <div class="mt-6 my-4 green-ribbon-gradient border-y-2 border-yellow-400 py-3 px-2 shadow-inner">
+                <div class="text-[10px] md:text-sm font-medium leading-relaxed text-yellow-50 space-y-2 md:space-y-0 md:flex md:flex-wrap md:justify-center md:gap-4 md:items-center">
+                    
+                    <div class="text-center">
+                        <span class="text-yellow-300 font-bold block md:inline">প্রতিষ্ঠাতা:</span> 
+                        আওলাদে রাসুল, রাহনুমায়ে শরীয়ত ও তরিকত হযরতুল আল্লামা আলহাজ্ব হাফেজ ক্বারী <br class="md:hidden">
+                        <span class="font-bold">সৈয়দ আহমদ শাহ সিরিকোটি (রহ.)</span>
+                    </div>
+                    
+                    <div class="hidden md:block text-yellow-400">•</div>
+
+                    <div class="text-center">
+                        <span class="text-yellow-300 font-bold block md:inline">প্রতিষ্ঠাতা:</span>
+                        আওলাদে রাসুল, রাহনুমায়ে শরীয়ত ও তরিকত হযরতুল আল্লামা আলহাজ্ব <br class="md:hidden">
+                        <span class="font-bold">সৈয়দ মুহাম্মদ তৈয়ব শাহ (রহ.)</span>
+                    </div>
+
+                    <div class="hidden md:block text-yellow-400">•</div>
+
+                    <div class="text-center">
+                        <span class="text-yellow-300 font-bold block md:inline">পৃষ্ঠপোষক:</span>
+                        আওলাদে রাসুল, রাহনুমায়ে শরীয়ত ও তরিকত হযরতুল আল্লামা আলহাজ্ব <br class="md:hidden">
+                        <span class="font-bold">সৈয়দ মুহাম্মদ তাহের শাহ (মুদ্দাজিল্লুহুল আলী)</span>
+                    </div>
+
+                    <div class="hidden md:block text-yellow-400">•</div>
+
+                    <div class="text-center">
+                        <span class="text-yellow-300 font-bold block md:inline">পৃষ্ঠপোষক:</span>
+                        আওলাদে রাসুল, রাহনুমায়ে শরীয়ত ও তরিকত হযরতুল আল্লামা আলহাজ্ব <br class="md:hidden">
+                        <span class="font-bold">সৈয়দ মুহাম্মদ সাবির শাহ (মুদ্দাজিল্লুহুল আলী)</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Management Info -->
+            <div class="inline-block bg-white text-green-900 rounded-full px-3 py-1 md:px-5 md:py-1.5 font-bold text-xs md:text-base shadow-sm mt-2 mb-4">
+                পরিচালনায়: আনজুমান-এ রহমানিয়া আহমদিয়া সুন্নিয়া ট্রাস্ট
+            </div>
+
+            <!-- Schedule Title -->
+            <div class="bg-black/20 rounded-lg p-3 mt-4">
+                <h2 class="text-xl md:text-3xl font-bold text-yellow-200">পবিত্র মাহে রমজান এর সময়সূচি</h2>
+                <p class="text-sm md:text-lg font-semibold opacity-90 text-white">১৪৪৭ হিজরি - ২০২৬ ইংরেজি</p>
+            </div>
         </div>
     </header>
 
@@ -47,7 +128,7 @@
 
         <!-- Countdown & District Selector -->
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 mb-6 md:mb-8">
-            <!-- Live Timer (Moved up for mobile priority) -->
+            <!-- Live Timer -->
             <div class="bg-white p-5 md:p-6 rounded-xl card-shadow border-t-4 border-green-600 text-center relative overflow-hidden order-1 md:order-2">
                 <div class="absolute top-0 right-0 bg-green-100 text-green-800 text-[10px] md:text-xs font-bold px-2 py-1 rounded-bl">LIVE</div>
                 <h3 class="text-lg md:text-xl font-bold text-gray-700 mb-1" id="timerTitle">পরবর্তী ইফতার</h3>

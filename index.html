@@ -11,6 +11,7 @@
             font-family: 'Hind Siliguri', sans-serif;
             background-color: #f0fdf4;
             -webkit-tap-highlight-color: transparent;
+            padding-bottom: 80px; /* Space for bottom nav */
         }
         .arabic-text {
             font-family: 'Times New Roman', serif;
@@ -32,6 +33,25 @@
             -ms-overflow-style: none;
             scrollbar-width: none;
         }
+        .content-section {
+            display: none;
+            animation: fadeIn 0.3s ease-in-out;
+        }
+        .content-section.active {
+            display: block;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .nav-item.active {
+            color: #166534;
+            font-weight: bold;
+        }
+        .nav-item.active svg {
+            fill: #dcfce7;
+            stroke: #166534;
+        }
     </style>
 </head>
 <body class="text-gray-800 antialiased">
@@ -44,7 +64,7 @@
              onerror="this.style.display='none'">
     </div>
 
-    <!-- Top Quotes Section (New) -->
+    <!-- Top Quotes Section -->
     <div class="bg-gray-100 border-b border-gray-200 p-3 text-xs md:text-sm text-center md:flex md:justify-between md:px-6">
         <div class="mb-2 md:mb-0 md:text-left text-gray-700 italic max-w-2xl">
             "হে ঈমানদারগণ, তোমাদের উপর রোজা ফরজ করা হয়েছে; যেমনিভাবে তোমাদের পূর্ববর্তীদের উপর ফরজ করা হয়েছিল, যেন তোমরা খোদাভীতি অর্জন করতে পারো। - আল-কোরআন"
@@ -74,7 +94,7 @@
             <!-- Address -->
             <p class="text-base md:text-2xl font-medium opacity-90 text-yellow-50 bg-black/10 inline-block px-4 py-1 rounded">ষোলশহর, চট্টগ্রাম।</p>
 
-            <!-- Founders Banner (New) -->
+            <!-- Founders Banner -->
             <div class="mt-6 my-4 green-ribbon-gradient border-y-2 border-yellow-400 py-3 px-2 shadow-inner">
                 <div class="text-[10px] md:text-sm font-medium leading-relaxed text-yellow-50 space-y-2 md:space-y-0 md:flex md:flex-wrap md:justify-center md:gap-4 md:items-center">
                     
@@ -123,105 +143,232 @@
         </div>
     </header>
 
-    <!-- Main Content -->
-    <main class="max-w-6xl mx-auto p-3 md:p-4 pb-20">
+    <!-- Main Content Container -->
+    <main class="max-w-6xl mx-auto p-3 md:p-4">
 
-        <!-- Countdown & District Selector -->
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 mb-6 md:mb-8">
-            <!-- Live Timer -->
-            <div class="bg-white p-5 md:p-6 rounded-xl card-shadow border-t-4 border-green-600 text-center relative overflow-hidden order-1 md:order-2">
-                <div class="absolute top-0 right-0 bg-green-100 text-green-800 text-[10px] md:text-xs font-bold px-2 py-1 rounded-bl">LIVE</div>
-                <h3 class="text-lg md:text-xl font-bold text-gray-700 mb-1" id="timerTitle">পরবর্তী ইফতার</h3>
-                <div class="text-4xl md:text-5xl font-bold text-green-700 font-mono mb-1" id="countdown">00:00:00</div>
-                <p class="text-xs md:text-sm text-gray-500" id="currentDateDisplay">আজকের তারিখ...</p>
-            </div>
+        <!-- TAB 1: SCHEDULE (Existing) -->
+        <div id="tab-schedule" class="content-section active">
+            <!-- Countdown & District Selector -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 mb-6 md:mb-8">
+                <!-- Live Timer -->
+                <div class="bg-white p-5 md:p-6 rounded-xl card-shadow border-t-4 border-green-600 text-center relative overflow-hidden order-1 md:order-2">
+                    <div class="absolute top-0 right-0 bg-green-100 text-green-800 text-[10px] md:text-xs font-bold px-2 py-1 rounded-bl">LIVE</div>
+                    <h3 class="text-lg md:text-xl font-bold text-gray-700 mb-1" id="timerTitle">পরবর্তী ইফতার</h3>
+                    <div class="text-4xl md:text-5xl font-bold text-green-700 font-mono mb-1" id="countdown">00:00:00</div>
+                    <p class="text-xs md:text-sm text-gray-500" id="currentDateDisplay">আজকের তারিখ...</p>
+                </div>
 
-            <!-- Time Adjustment -->
-            <div class="bg-white p-5 md:p-6 rounded-xl card-shadow border-t-4 border-blue-500 order-2 md:order-1">
-                <h3 class="text-lg md:text-xl font-bold text-gray-700 mb-2">আপনার এলাকা নির্বাচন করুন</h3>
-                <select id="districtSelect" class="w-full p-3 text-base border border-gray-300 rounded-lg bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-shadow appearance-none" onchange="updateSchedule()" style="background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23007CB2%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E'); background-repeat: no-repeat; background-position: right .7em top 50%; background-size: .65em auto; padding-right: 1.5em;">
-                    <option value="0">চট্টগ্রাম (মূল সময়)</option>
-                    <option value="2">ঢাকা (+২ মিনিট)</option>
-                    <option value="7">রংপুর, খুলনা, বরিশাল (+৭ মিনিট)</option>
-                    <option value="11">রাজশাহী, দিনাজপুর (+১১ মিনিট)</option>
-                    <option value="10">নীলফামারী (+১০ মিনিট)</option>
-                    <option value="1">সুনামগঞ্জ, সিলেট, হবিগঞ্জ, মৌলভীবাজার, ফেনী (+১ মিনিট)</option>
-                </select>
-                <p class="text-xs text-red-500 mt-2">* সেহরি ও ইফতারে এই সময় যোগ হবে।</p>
-            </div>
-        </div>
-
-        <!-- Dua Section -->
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 mb-8">
-            <!-- Sehri Niyat -->
-            <div class="bg-amber-50 p-5 rounded-xl border border-amber-200 text-center shadow-sm">
-                <h3 class="text-lg md:text-xl font-bold text-amber-800 mb-2 border-b border-amber-200 pb-2">রোজার নিয়ত (সেহরি)</h3>
-                <p class="arabic-text text-xl md:text-2xl mb-2 leading-relaxed text-gray-800">نَوَيْتُ اَنْ اُصُوْمَ غَدًا مِّنْ شَهْرِ رَمْضَانَ الْمُبَارَكِ فَرْضًا لَكَ يَا اللهُ فَتَقَبَّل مِنِّى اِنَّكَ اَنْتَ السَّمِيْعُ الْعَلِيْم</p>
-                <p class="text-sm italic text-gray-600 mb-2 leading-snug">উচ্চারণ: নাওয়াইতু আন আছুমা গাদাম মিন শাহরি রমজানাল মুবারাকি ফারদাল্লাকা ইয়া আল্লাহু ফাতাকাব্বাল মিন্নি ইন্নাকা আনতাস সামিউল আলিম।</p>
-                <div class="bg-white/50 p-2 rounded text-xs md:text-sm font-medium text-amber-900 leading-snug">
-                    অর্থ: হে আল্লাহ! আমি আগামীকাল পবিত্র রমজানের তোমার পক্ষ থেকে ফরজ রোজা রাখার নিয়ত করলাম, অতএব তুমি আমার পক্ষ থেকে তা কবুল কর, নিশ্চয়ই তুমি সর্বশ্রোতা ও সর্বজ্ঞ।
+                <!-- Time Adjustment -->
+                <div class="bg-white p-5 md:p-6 rounded-xl card-shadow border-t-4 border-blue-500 order-2 md:order-1">
+                    <h3 class="text-lg md:text-xl font-bold text-gray-700 mb-2">আপনার এলাকা নির্বাচন করুন</h3>
+                    <select id="districtSelect" class="w-full p-3 text-base border border-gray-300 rounded-lg bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-shadow appearance-none" onchange="updateSchedule()" style="background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23007CB2%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E'); background-repeat: no-repeat; background-position: right .7em top 50%; background-size: .65em auto; padding-right: 1.5em;">
+                        <option value="0">চট্টগ্রাম (মূল সময়)</option>
+                        <option value="2">ঢাকা (+২ মিনিট)</option>
+                        <option value="7">রংপুর, খুলনা, বরিশাল (+৭ মিনিট)</option>
+                        <option value="11">রাজশাহী, দিনাজপুর (+১১ মিনিট)</option>
+                        <option value="10">নীলফামারী (+১০ মিনিট)</option>
+                        <option value="1">সুনামগঞ্জ, সিলেট, হবিগঞ্জ, মৌলভীবাজার, ফেনী (+১ মিনিট)</option>
+                    </select>
+                    <p class="text-xs text-red-500 mt-2">* সেহরি ও ইফতারে এই সময় যোগ হবে।</p>
                 </div>
             </div>
 
-            <!-- Iftar Dua -->
-            <div class="bg-blue-50 p-5 rounded-xl border border-blue-200 text-center shadow-sm">
-                <h3 class="text-lg md:text-xl font-bold text-blue-800 mb-2 border-b border-blue-200 pb-2">ইফতারের দোয়া</h3>
-                <p class="arabic-text text-xl md:text-2xl mb-2 leading-relaxed text-gray-800">اللَّهُمَّ لَكَ صُمْتُ وَعَلَى رِزْقِكَ أَفْطَرْتُ بِرَحْمَتِكَ يَا أَرْحَمَ الرَّاحِمِينَ</p>
-                <p class="text-sm italic text-gray-600 mb-2 leading-snug">উচ্চারণ: আল্লাহুম্মা লাকা ছুমতু ওয়া আলা রিযক্বিকা আফতারতু বিরাহমাতিকা ইয়া আরহামার রাহিমিন।</p>
-                <div class="bg-white/50 p-2 rounded text-xs md:text-sm font-medium text-blue-900 leading-snug">
-                    অর্থ: হে আল্লাহ! আমি তোমারই সন্তুষ্টির জন্য রোজা রেখেছি এবং তোমারই দেওয়া রিযিক দ্বারা ইফতার করলাম।
-                </div>
-            </div>
-        </div>
-
-        <!-- Schedule Tables -->
-        <div id="scheduleContainer" class="space-y-6 md:space-y-8">
-            <!-- Template for tables -->
-            <script type="text/template" id="table-template">
-                <div class="bg-white rounded-xl shadow-md overflow-hidden border border-gray-100">
-                    <div class="TITLE_BG_COLOR text-white py-2 px-3 text-center sticky top-0 z-10">
-                        <h2 class="text-lg md:text-2xl font-bold">TITLE_TEXT</h2>
+            <!-- Schedule Tables -->
+            <div id="scheduleContainer" class="space-y-6 md:space-y-8 mb-8">
+                <!-- Template for tables -->
+                <script type="text/template" id="table-template">
+                    <div class="bg-white rounded-xl shadow-md overflow-hidden border border-gray-100">
+                        <div class="TITLE_BG_COLOR text-white py-2 px-3 text-center sticky top-0 z-10">
+                            <h2 class="text-lg md:text-2xl font-bold">TITLE_TEXT</h2>
+                        </div>
+                        <div class="overflow-x-auto no-scrollbar">
+                            <table class="w-full text-center whitespace-nowrap text-sm md:text-base">
+                                <thead class="bg-gray-100 text-gray-700 font-semibold border-b">
+                                    <tr>
+                                        <th class="px-2 py-3 md:p-3 min-w-[50px]">রমজান</th>
+                                        <th class="px-2 py-3 md:p-3">তারিখ</th>
+                                        <th class="px-2 py-3 md:p-3">বার</th>
+                                        <th class="px-2 py-3 md:p-3 bg-red-50 text-red-700">সেহরি শেষ</th>
+                                        <th class="px-2 py-3 md:p-3 bg-green-50 text-green-700">ইফতার</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="TBODY_ID" class="text-gray-700 divide-y"></tbody>
+                            </table>
+                        </div>
                     </div>
-                    <div class="overflow-x-auto no-scrollbar">
-                        <table class="w-full text-center whitespace-nowrap text-sm md:text-base">
-                            <thead class="bg-gray-100 text-gray-700 font-semibold border-b">
-                                <tr>
-                                    <th class="px-2 py-3 md:p-3 min-w-[50px]">রমজান</th>
-                                    <th class="px-2 py-3 md:p-3">তারিখ</th>
-                                    <th class="px-2 py-3 md:p-3">বার</th>
-                                    <th class="px-2 py-3 md:p-3 bg-red-50 text-red-700">সেহরি শেষ</th>
-                                    <th class="px-2 py-3 md:p-3 bg-green-50 text-green-700">ইফতার</th>
-                                </tr>
-                            </thead>
-                            <tbody id="TBODY_ID" class="text-gray-700 divide-y"></tbody>
-                        </table>
+                </script>
+                <div id="rahmat-section"></div>
+                <div id="maghfirat-section"></div>
+                <div id="nazat-section"></div>
+            </div>
+            
+            <!-- Quick Dua (Existing) -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 mb-8">
+                <div class="bg-amber-50 p-5 rounded-xl border border-amber-200 text-center shadow-sm">
+                    <h3 class="text-lg font-bold text-amber-800 mb-2">রোজার নিয়ত (সংক্ষিপ্ত)</h3>
+                    <p class="arabic-text text-xl mb-2 text-gray-800">نَوَيْتُ اَنْ اُصُوْمَ غَدًا...</p>
+                    <button onclick="switchTab('tab-roza')" class="text-amber-700 underline text-sm">পূর্ণাঙ্গ দোয়া ও বিস্তারিত দেখুন</button>
+                </div>
+                <div class="bg-blue-50 p-5 rounded-xl border border-blue-200 text-center shadow-sm">
+                    <h3 class="text-lg font-bold text-blue-800 mb-2">ইফতারের দোয়া (সংক্ষিপ্ত)</h3>
+                    <p class="arabic-text text-xl mb-2 text-gray-800">اللَّهُمَّ لَكَ صُمْتُ...</p>
+                    <button onclick="switchTab('tab-roza')" class="text-blue-700 underline text-sm">পূর্ণাঙ্গ দোয়া ও বিস্তারিত দেখুন</button>
+                </div>
+            </div>
+
+            <!-- Footer Info -->
+            <div class="mt-6 md:mt-8 bg-yellow-50 border border-yellow-200 p-4 rounded-lg text-sm text-center md:text-left shadow-sm">
+                <h4 class="font-bold text-base md:text-lg mb-2 text-yellow-800 flex items-center justify-center md:justify-start gap-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd" /></svg>
+                    বিশেষ জ্ঞাতব্য:
+                </h4>
+                <ul class="list-none md:list-disc md:list-inside space-y-2 text-gray-700 text-xs md:text-sm">
+                    <li class="bg-white/60 p-2 rounded">সেহরীর শেষ সময়ের ১০ মিনিট পর ফজরের আজান হবে।</li>
+                    <li class="bg-white/60 p-2 rounded">আপনার যাকাতের চারভাগের একভাগ এবং আপনার পরিবারের ফিতরা সমূহ আঞ্জুমান পরিচালিত মাদ্রাসা সমূহের এতিম/মিসকিন ফান্ডের জন্য দান করুন।</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- TAB 2: ROZA & IFTAR (Detailed from PDF) -->
+        <div id="tab-roza" class="content-section">
+            <div class="bg-white p-6 rounded-xl card-shadow border-t-4 border-amber-500 mb-6">
+                <h2 class="text-2xl font-bold text-amber-800 mb-4 border-b pb-2">রোযা</h2>
+                <p class="mb-4 text-justify leading-relaxed">
+                    শা'বানের পর আসে মাহে রমযান। পবিত্র রমযান এক মাসের রোযা রাখা প্রত্যেক বালেগ-আক্কেল মুসলমানের উপর ফরয। কেউ শরীয়ত সম্মত কারণে রোযা রাখতে অপারগ হলে প্রত্যেক রোযার জন্য 'ফিদিয়া' দিতে হয়। রোযা পালনের জন্য নিয়্যত করতে হয়। সারাদিন রোযা পালনের পর সূর্যাস্তের সাথে সাথে ইফতার করতে হয়। সুতরাং রোযা ও ইফতারের নিয়্যত নিম্নে প্রদত্ত হল:
+                </p>
+
+                <!-- Sehri Niyat -->
+                <div class="bg-amber-50 p-4 rounded-lg mb-6 border border-amber-200">
+                    <h3 class="text-xl font-bold text-amber-900 mb-3 text-center">রোযার নিয়্যত</h3>
+                    <p class="arabic-text text-2xl md:text-3xl text-center mb-4 leading-loose font-medium text-gray-800">
+                        نَوَيْتُ أَنْ أَصُومَ غَدًا مِّنْ شَهْرٍ رَمَضَانَ الْمُبَارَكِ فَرْضًا لَّكَ يَا الله فَتَقَبَّلُ مِنِّي إِنَّكَ أَنْتَ السَّمِيعُ الْعَلِيمُ
+                    </p>
+                    <p class="italic text-gray-700 mb-2">
+                        <span class="font-bold">উচ্চারণ :</span> নাওয়াইতু আন্ আসূ-মা গাদাম্ মিন শাহরি রামাদ্বা-নাল মুবারাক; ফারদ্বাল্ লাকা ইয়া-আল্লা-হ, ফাতাক্বাব্বাল মিন্নী- ইন্নাকা আন্তাস্ সামী 'উল্ 'আলী-ম।
+                    </p>
+                    <p class="text-gray-800">
+                        <span class="font-bold">অর্থঃ</span> আমি আগামীকাল পবিত্র রমযান মাসের ফরয রোযা রাখার নিয়্যত করলাম। হে আল্লাহ! তুমি এটা আমার নিকট থেকে কবুল কর; নিশ্চয় তুমি শ্রোতা, জ্ঞাতা।
+                    </p>
+                    <div class="mt-3 bg-yellow-100 p-2 text-sm text-yellow-800 rounded">
+                        * আর যদি পরদিন দ্বি-প্রহরের পূর্বে নিয়্যত করা হয়, তবে 'আসূমা' শব্দের পরে 'গদাম' শব্দটি না বলে 'আল্ ইয়াওমা' বলবেন। এ শব্দের অর্থ 'আজ'।
                     </div>
                 </div>
-            </script>
 
-            <!-- Rahmat -->
-            <div id="rahmat-section"></div>
-            <!-- Maghfirat -->
-            <div id="maghfirat-section"></div>
-            <!-- Nazat -->
-            <div id="nazat-section"></div>
+                <!-- Iftar Niyat -->
+                <div class="bg-blue-50 p-4 rounded-lg mb-4 border border-blue-200">
+                    <h3 class="text-xl font-bold text-blue-900 mb-3 text-center">ইফতারের নিয়্যত</h3>
+                    <p class="arabic-text text-2xl md:text-3xl text-center mb-4 leading-loose font-medium text-gray-800">
+                        أَللَّهُمَّ لَكَ صُمْتُ وَعَلَيْكَ تَوَكَّلْتُ وَعَلَى رِزْقِكَ أَفْطَرْتُ بِرَحْمَتِكَ يَا أَرْحَمَ الرَّحِمِينَ
+                    </p>
+                    <p class="italic text-gray-700 mb-2">
+                        <span class="font-bold">উচ্চারণ :</span> আল্লা-হুম্মা লাকা ছুমতু ওয়া 'আলায়কা তাওয়াক্কাল্টু ওয়া 'আলা-রিযক্বিকা আফতারতু বিরাহমাতিকা ইয়া-আর হামার রা-হিমী-ন।
+                    </p>
+                    <p class="text-gray-800">
+                        <span class="font-bold">অর্থ :</span> হে আল্লাহ! তোমারই (সন্তুষ্টির) জন্য আমি রোযা রেখেছি, তোমার উপরই ভরসা করেছি এবং তোমারই রিযক্বের উপর ইফতার করছি, তোমার দয়া সহকারে, হে সর্বাধিক দয়ালু।
+                    </p>
+                </div>
+            </div>
         </div>
 
-        <!-- Footer Info -->
-        <div class="mt-6 md:mt-8 bg-yellow-50 border border-yellow-200 p-4 rounded-lg text-sm text-center md:text-left shadow-sm">
-            <h4 class="font-bold text-base md:text-lg mb-2 text-yellow-800 flex items-center justify-center md:justify-start gap-2">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd" /></svg>
-                বিশেষ জ্ঞাতব্য:
-            </h4>
-            <ul class="list-none md:list-disc md:list-inside space-y-2 text-gray-700 text-xs md:text-sm">
-                <li class="bg-white/60 p-2 rounded">সেহরীর শেষ সময়ের ১০ মিনিট পর ফজরের আজান হবে।</li>
-                <li class="bg-white/60 p-2 rounded">আপনার যাকাতের চারভাগের একভাগ এবং আপনার পরিবারের ফিতরা সমূহ আঞ্জুমান পরিচালিত মাদ্রাসা সমূহের এতিম/মিসকিন ফান্ডের জন্য দান করুন।</li>
-            </ul>
+        <!-- TAB 3: TARAWIH (Detailed from PDF) -->
+        <div id="tab-tarawih" class="content-section">
+            <div class="bg-white p-6 rounded-xl card-shadow border-t-4 border-cyan-600 mb-6">
+                <h2 class="text-2xl font-bold text-cyan-800 mb-4 border-b pb-2">তারাবীহ</h2>
+                <p class="mb-4 text-justify">
+                    পবিত্র রমযানের প্রত্যেক রাতে এশা ও বিতরের নামাযের মধ্যভাগে দু'দু'রাক'আত করে বিশ রাক'আত তারাবীহর নামায পড়ার বিধান রয়েছে।
+                </p>
+
+                <!-- Tarawih Niyat -->
+                <div class="bg-cyan-50 p-4 rounded-lg mb-6 border border-cyan-200">
+                    <h3 class="text-lg font-bold text-cyan-900 mb-2">তারাবীহর নামাযের নিয়্যত</h3>
+                    <p class="arabic-text text-xl md:text-2xl mb-2 text-right leading-loose">
+                        نَوَيْتُ أَنْ أُصَلِّيَ لِلَّهِ تَعَالَى رَكْعَتَى صَلوةِ التَّرَاوِيحِ - سُنَّةُ رَسُولِ اللَّهِ تَعَالَى مُتَوجِهَا إِلَى جِهَةِ الْكَعْبَةِ الشَّرِيفَةِ اللَّهُ أَكْبَرُ
+                    </p>
+                    <p class="text-sm italic text-gray-700 mb-1">
+                        <span class="font-bold">উচ্চারণ :</span> নাওয়াইতু আন্ উসোয়াল্লিয়া লিল্লা-হি তা'আ-লা রাকা'আতাই সোয়ালা-তিত্ তারা-ভী-হ। সুন্নাতু রসূ-লিল্লা-হি তা'আ-লা মুতাওয়াজ্জিহান্ ইলা-জিহাতিল্ কা'বাতিশ্ শারী-ফাতি আল্লা-হু আকবার।
+                    </p>
+                    <p class="text-sm text-gray-800">
+                        <span class="font-bold">অর্থঃ</span> আমি আল্লাহর উদ্দেশ্যে ক্বেবলামুখী হয়ে দু' রাক'আত তারাবীহর সুন্নাত নামায সম্পন্ন করছি। আল্লাহু আকবার।
+                    </p>
+                </div>
+
+                <!-- After 2 Rakats -->
+                <div class="bg-gray-50 p-4 rounded-lg mb-6 border border-gray-200">
+                    <h3 class="text-lg font-bold text-gray-800 mb-2">প্রতি দুই রাক'আত নামাযের পর দরূদ শরীফ</h3>
+                    <p class="arabic-text text-xl mb-2 text-right leading-loose">
+                        اللَّهُمَّ صَلِّ عَلَى سَيِّدِنَا وَنَبِيِّنَا وَشَفِيْعِنَا وَمَوْلَانَا مُحَمَّدٍ صَلَّى اللَّهُ عَلَيْهِ وَالِهِ وَأَصْحَابِهِ وَبَارِكْ وَسَلِّمُ
+                    </p>
+                    <p class="text-sm italic text-gray-700 mb-4">
+                        <span class="font-bold">উচ্চারণ :</span> আল্লা-হুম্মা সল্লি আ'লা- সাইয়্যিদিনা ওয়া নাবিয়্যিনা- ওয়া শাফী-'ইনা- ওয়া মাওলা-না- মুহাম্মাদিন্ সাল্লাল্লা-হু আলায়হি ওয়া আ-লিহী ওয়া আসহা-বিহী ওয়া বারিক ওয়া সাল্লিম।
+                    </p>
+                    <p class="arabic-text text-xl mb-2 text-right leading-loose">
+                        هَذَا مِنْ فَضْلِ رَبِّي يَا كَرِيمَ الْمَعْرُوفِ وَيَا قَدِيمَ الْإِحْسَانِ ثَبِّتُ قَلْبِي عَلَى دِينِكَ بِرَحْمَتِكَ يَا أَرْحَمَ الرّاحِمِينَ
+                    </p>
+                    <p class="text-sm italic text-gray-700">
+                        <span class="font-bold">উচ্চারণ :</span> হা-যা- মিন্ ফাদুলি রব্বী- ইয়া- কারী-মাল্ মা'রূ-ফ, ওয়া ইয়া- ক্বাদী-মাল ইহসা-ন, ওয়া সাব্বিত ক্বল্পী- 'আলা- দী-নিকা, বিরহমাতিকা ইয়া- আরহামার রা-হিমীন।
+                    </p>
+                </div>
+
+                <!-- After 4 Rakats -->
+                <div class="bg-indigo-50 p-4 rounded-lg mb-6 border border-indigo-200">
+                    <h3 class="text-lg font-bold text-indigo-900 mb-2">প্রতি চার রাক'আত তারাবীহ নামাযের পর দো'আ</h3>
+                    <p class="arabic-text text-xl md:text-2xl mb-2 text-right leading-loose">
+                        سُبُحْنَ ذِي الْمُلْكِ وَالْمَلَكُوتِ سُبُحْنَ ذِي الْعِزَّةِ وَالْعَظْمَةِ وَالْهَيْبَةِ وَالْقُدْرَةِ وَالْكِبْرِيَاءِ وَالْجَبَرُوتِ - سُبُحْنَ الْمَلِكِ الْحَيِّ الَّذِي لَا يَنَامُ وَلَا يَمُوْتُ اَبَدًا اَبَدًا - سُبُّوحٌ قُدُّوسٌ رَبُّنَا وَرَبُّ الْمَلَائِكَةِ وَالرُّوحِ
+                    </p>
+                    <p class="text-sm italic text-gray-700">
+                        <span class="font-bold">উচ্চারণ :</span> সুবহা-না যিল মুল্কি ওয়াল মালাকৃতি, সুবহা-না যিল্ 'ইয্যাতি ওয়াল 'আয্যাতি ওয়াল্ হায়বাতি ওয়াল্ কুদ্রাতি ওয়াল্ কিবরিয়া-ই ওয়াল্ জাবারূ-তি, সুবহা-নাল মালিকিল হাইয়্যিল লাযী- লা-ইয়ানা-মু ওয়ালা- ইয়ামূ-তু আবাদান্ আবাদা-। সুব্বু-হুন কুদ্দু-সুন রাব্বুনা-ওয়া রাব্বুল মালা-ইকাতি ওয়ার্ রূ-হ।
+                    </p>
+                </div>
+
+                <!-- Munajat -->
+                <div class="bg-purple-50 p-4 rounded-lg border border-purple-200">
+                    <h3 class="text-lg font-bold text-purple-900 mb-2">তারাবীহ নামাযের প্রতি চার রাক'আত পর মুনাজাত</h3>
+                    <p class="arabic-text text-xl md:text-2xl mb-2 text-right leading-loose">
+                        اللَّهُمَّ إِنَّا نَسْتَلُكَ الْجَنَّةَ وَنَعُوذُبِكَ مِنَ النَّارِ، يَا خَالِقَ الْجَنَّةِ وَالنَّارِ، بِرَحْمَتِكَ يَا عَزِيزُ يَا غَفَّارُ يَا كَرِيمُ يَا سَتَارُ يَا رَحِيمُ يَا جَبَّارُ يَا خَالِقُ يَا بَارُ - اللَّهُمَّ أَجِرْنَا وَخَلَّصْنَا مِنَ النَّارِ يَا مُجِيرُ، يَا مُجِيرُ ، يَامُجِيرُ، بِرَحْمَتِكَ يَا أَرْحَمَ الرَّاحِمِينَ
+                    </p>
+                    <p class="text-sm italic text-gray-700">
+                        <span class="font-bold">উচ্চারণ :</span> আল্লা-হুম্মা ইন্না- নাআলুকাল্ জান্নাতা ওয়া না'ঊ-যুবিকা মিনান্ না-র, ইয়া খা-লিকাল জান্নাতি ওয়ান্ না-র; বিরাহমাতিকা ইয়া- আযী-যু ইয়া গাফ্ফা-রু ইয়া কারী-মু ইয়া সাত্তা-রু ইয়া রাহী-মু ইয়া জাব্বা-রু ইয়া খা-লিকু ইয়া বা-র্। আল্লা-হুম্মা আজিরনা ওয়া খাল্লিসনা- মিনান্ না-র। ইয়া- মুজী-রু ইয়া মুজী-রু ইয়া মুজী-র, বিরাহমাতিকা ইয়া-আর হামার রা-হিমী-ন।
+                    </p>
+                </div>
+            </div>
         </div>
+
+        <!-- TAB 4: ITIKAF (Detailed from PDF) -->
+        <div id="tab-itikaf" class="content-section">
+            <div class="bg-white p-6 rounded-xl card-shadow border-t-4 border-emerald-600 mb-6">
+                <h2 class="text-2xl font-bold text-emerald-800 mb-4 border-b pb-2">ই'তিকাফ</h2>
+                <p class="mb-4">
+                    ই'তিকাফ-এর নিয়্যতে মসজিদে অবস্থান করার নাম ই'তিকাফ। ই'তিকাফ তিন প্রকার- ১.ওয়াজিব, ২. সুন্নাত-ই মুআক্কাদাহ ও ৩. মুস্তাহাব।
+                </p>
+
+                <div class="space-y-4">
+                    <div class="border-l-4 border-red-500 pl-4 bg-red-50 p-2 rounded-r">
+                        <h3 class="font-bold text-lg text-red-800">১. ই'তিকাফ-ই ওয়াজিব</h3>
+                        <p class="text-gray-700">এটা মান্নতের ই'তিকাফ। এটা পালনের জন্য রোযা রাখা অত্যাবশ্যক। রোযা ব্যতীত এটা বিশুদ্ধ হয় না।</p>
+                    </div>
+
+                    <div class="border-l-4 border-emerald-500 pl-4 bg-emerald-50 p-2 rounded-r">
+                        <h3 class="font-bold text-lg text-emerald-800">২. ই'তিকাফ-ই সুন্নাত-ই মুআক্কাদাহ</h3>
+                        <p class="text-gray-700 mb-2">এটা রমযান মাসের পূর্ণ শেষ দশদিনে করা হয়। ২০ রমযান সূর্যাস্তের সময় বা পূর্বে ই'তিকাফের নিয়্যতে মসজিদে উপস্থিত হতে হয়। আর ৩০ রমযান সূর্যাস্তের পর অথবা ২৯ রমযান শাওয়ালের চাঁদ দৃষ্ট হওয়ার পর মসজিদ থেকে বের হবেন। অন্যথায় এ পর্যায়ের ই'তিকাফ সম্পন্ন হবে না।</p>
+                        <p class="text-gray-700 font-medium">এ ই'তিকাফ হচ্ছে সুন্নাত-ই মুআক্কাদাহ-ই কিফায়া। সবাই ছেড়ে দিলে সবাইকে পাকড়াও করা হবে। আর যদি একজনও তা সম্পন্ন করে নেন, তবে সবাই দায়িমুক্ত হয়ে যাবেন। এ ই'তিকাফের জন্যও রোযা রাখা পূর্বশর্ত। তবে রমযানের রোযাগুলোই তজ্জন্য যথেষ্ট। (হেদায়া ইত্যাদি)</p>
+                    </div>
+
+                    <div class="border-l-4 border-blue-500 pl-4 bg-blue-50 p-2 rounded-r">
+                        <h3 class="font-bold text-lg text-blue-800">৩. মুস্তাহাব ই'তিকাফ</h3>
+                        <p class="text-gray-700">উপরোক্ত দু'প্রকারের ই'তিকাফ ব্যতীত যে ই'তিকাফ করা হয় তা' মুস্তাহাব। এ ই'তিকাফের জন্য রোযা পূর্বশর্ত নয়। এটা কিছুক্ষণের জন্যও হতে পারে। মসজিদে যখনই যাবেন এ ই'তিকাফের নিয়্যত করে নেবেন। মসজিদ থেকে বের হতেই এ ই'তিকাফ খতম হয়ে যায়। এতে মুস্তাহাব ই'তিকাফের নিয়্যত করাই যথেষ্ট।</p>
+                    </div>
+                </div>
+
+                <div class="mt-6 bg-yellow-100 border border-yellow-200 p-3 rounded text-center">
+                    <p class="font-semibold text-yellow-900">উল্লেখ্য, পুরুষের ই'তিকাফের জন্য মসজিদ জরুরি আর মেয়েদের জন্য নিজ ঘরের একটি বিশেষ জায়গা।</p>
+                </div>
+            </div>
+        </div>
+
     </main>
 
-    <!-- Footer -->
-    <footer class="bg-gray-800 text-gray-300 py-6 md:py-8 mt-6">
+    <!-- Footer (Preserved) -->
+    <footer class="bg-gray-800 text-gray-300 py-6 md:py-8 mt-6 pb-24">
         <div class="max-w-6xl mx-auto px-4 text-center">
             
             <p class="text-xs md:text-sm text-gray-400 mb-4 flex flex-col md:flex-row justify-center items-center gap-2 md:gap-4">
@@ -240,7 +387,73 @@
         </div>
     </footer>
 
+    <!-- Bottom Navigation Bar (App-like Menu) -->
+    <nav class="fixed bottom-0 left-0 w-full bg-white border-t border-gray-200 shadow-lg z-50 pb-safe">
+        <div class="max-w-6xl mx-auto flex justify-around items-center">
+            
+            <!-- Schedule Tab -->
+            <button onclick="switchTab('tab-schedule')" class="nav-item active flex-1 py-3 flex flex-col items-center gap-1 text-gray-500 hover:text-green-700 transition" id="nav-schedule">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                </svg>
+                <span class="text-[10px] md:text-xs">সময়সূচি</span>
+            </button>
+
+            <!-- Roza Tab -->
+            <button onclick="switchTab('tab-roza')" class="nav-item flex-1 py-3 flex flex-col items-center gap-1 text-gray-500 hover:text-green-700 transition" id="nav-roza">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+                </svg>
+                <span class="text-[10px] md:text-xs">রোজা ও ইফতার</span>
+            </button>
+
+            <!-- Tarawih Tab -->
+            <button onclick="switchTab('tab-tarawih')" class="nav-item flex-1 py-3 flex flex-col items-center gap-1 text-gray-500 hover:text-green-700 transition" id="nav-tarawih">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                </svg>
+                <span class="text-[10px] md:text-xs">তারাবীহ</span>
+            </button>
+
+            <!-- Itikaf Tab -->
+            <button onclick="switchTab('tab-itikaf')" class="nav-item flex-1 py-3 flex flex-col items-center gap-1 text-gray-500 hover:text-green-700 transition" id="nav-itikaf">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+                </svg>
+                <span class="text-[10px] md:text-xs">ইতিকাফ</span>
+            </button>
+
+        </div>
+    </nav>
+
     <script>
+        // Tab Switching Logic
+        function switchTab(tabId) {
+            // Hide all sections
+            document.querySelectorAll('.content-section').forEach(el => el.classList.remove('active'));
+            // Show selected section
+            document.getElementById(tabId).classList.add('active');
+            
+            // Update Nav State
+            document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
+            
+            // Map tabId to navId
+            const navMap = {
+                'tab-schedule': 'nav-schedule',
+                'tab-roza': 'nav-roza',
+                'tab-tarawih': 'nav-tarawih',
+                'tab-itikaf': 'nav-itikaf'
+            };
+            
+            const navId = navMap[tabId];
+            if(navId) {
+                document.getElementById(navId).classList.add('active');
+            }
+            
+            // Scroll to top of content
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
         // Data derived exactly from the uploaded image (2026 Schedule)
         const scheduleData = [
             // Rahmat (1-10)

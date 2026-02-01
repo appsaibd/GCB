@@ -1,1 +1,349 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>রমজান সময়সূচি ২০২৬ - জামেয়া আহমদিয়া সুন্নিয়া কামিল মাদ্রাসা</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&family=Noto+Serif+Bengali:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Hind Siliguri', sans-serif;
+            background-color: #f0fdf4;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .arabic-text {
+            font-family: 'Times New Roman', serif;
+            direction: rtl;
+        }
+        .header-gradient {
+            background: linear-gradient(to bottom, #166534, #14532d);
+        }
+        .card-shadow {
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+        /* Hide scrollbar for cleaner look on mobile but allow functionality */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="text-gray-800 antialiased">
 
+    <!-- Header Section -->
+    <header class="header-gradient text-white py-4 px-3 md:p-6 text-center shadow-lg border-b-4 border-yellow-500 sticky top-0 z-50">
+        <div class="max-w-4xl mx-auto">
+            <h1 class="text-2xl md:text-5xl font-bold mb-1 md:mb-2 leading-tight">পবিত্র মাহে রমজান এর সময়সূচি</h1>
+            <p class="text-sm md:text-lg text-yellow-200 font-semibold opacity-90">১৪৪৭ হিজরি - ২০২৬ ইংরেজি</p>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-6xl mx-auto p-3 md:p-4 pb-20">
+
+        <!-- Countdown & District Selector -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 mb-6 md:mb-8">
+            <!-- Live Timer (Moved up for mobile priority) -->
+            <div class="bg-white p-5 md:p-6 rounded-xl card-shadow border-t-4 border-green-600 text-center relative overflow-hidden order-1 md:order-2">
+                <div class="absolute top-0 right-0 bg-green-100 text-green-800 text-[10px] md:text-xs font-bold px-2 py-1 rounded-bl">LIVE</div>
+                <h3 class="text-lg md:text-xl font-bold text-gray-700 mb-1" id="timerTitle">পরবর্তী ইফতার</h3>
+                <div class="text-4xl md:text-5xl font-bold text-green-700 font-mono mb-1" id="countdown">00:00:00</div>
+                <p class="text-xs md:text-sm text-gray-500" id="currentDateDisplay">আজকের তারিখ...</p>
+            </div>
+
+            <!-- Time Adjustment -->
+            <div class="bg-white p-5 md:p-6 rounded-xl card-shadow border-t-4 border-blue-500 order-2 md:order-1">
+                <h3 class="text-lg md:text-xl font-bold text-gray-700 mb-2">আপনার এলাকা নির্বাচন করুন</h3>
+                <select id="districtSelect" class="w-full p-3 text-base border border-gray-300 rounded-lg bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-shadow appearance-none" onchange="updateSchedule()" style="background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23007CB2%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E'); background-repeat: no-repeat; background-position: right .7em top 50%; background-size: .65em auto; padding-right: 1.5em;">
+                    <option value="0">চট্টগ্রাম (মূল সময়)</option>
+                    <option value="2">ঢাকা (+২ মিনিট)</option>
+                    <option value="7">রংপুর, খুলনা, বরিশাল (+৭ মিনিট)</option>
+                    <option value="11">রাজশাহী, দিনাজপুর (+১১ মিনিট)</option>
+                    <option value="10">নীলফামারী (+১০ মিনিট)</option>
+                    <option value="1">সুনামগঞ্জ, সিলেট, হবিগঞ্জ, মৌলভীবাজার, ফেনী (+১ মিনিট)</option>
+                </select>
+                <p class="text-xs text-red-500 mt-2">* সেহরি ও ইফতারে এই সময় যোগ হবে।</p>
+            </div>
+        </div>
+
+        <!-- Dua Section -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 mb-8">
+            <!-- Sehri Niyat -->
+            <div class="bg-amber-50 p-5 rounded-xl border border-amber-200 text-center shadow-sm">
+                <h3 class="text-lg md:text-xl font-bold text-amber-800 mb-2 border-b border-amber-200 pb-2">রোজার নিয়ত (সেহরি)</h3>
+                <p class="arabic-text text-xl md:text-2xl mb-2 leading-relaxed text-gray-800">نَوَيْتُ اَنْ اُصُوْمَ غَدًا مِّنْ شَهْرِ رَمْضَانَ الْمُبَارَكِ فَرْضًا لَكَ يَا اللهُ فَتَقَبَّل مِنِّى اِنَّكَ اَنْتَ السَّمِيْعُ الْعَلِيْم</p>
+                <p class="text-sm italic text-gray-600 mb-2 leading-snug">উচ্চারণ: নাওয়াইতু আন আছুমা গাদাম মিন শাহরি রমজানাল মুবারাকি ফারদাল্লাকা ইয়া আল্লাহু ফাতাকাব্বাল মিন্নি ইন্নাকা আনতাস সামিউল আলিম।</p>
+                <div class="bg-white/50 p-2 rounded text-xs md:text-sm font-medium text-amber-900 leading-snug">
+                    অর্থ: হে আল্লাহ! আমি আগামীকাল পবিত্র রমজানের তোমার পক্ষ থেকে ফরজ রোজা রাখার নিয়ত করলাম, অতএব তুমি আমার পক্ষ থেকে তা কবুল কর, নিশ্চয়ই তুমি সর্বশ্রোতা ও সর্বজ্ঞ।
+                </div>
+            </div>
+
+            <!-- Iftar Dua -->
+            <div class="bg-blue-50 p-5 rounded-xl border border-blue-200 text-center shadow-sm">
+                <h3 class="text-lg md:text-xl font-bold text-blue-800 mb-2 border-b border-blue-200 pb-2">ইফতারের দোয়া</h3>
+                <p class="arabic-text text-xl md:text-2xl mb-2 leading-relaxed text-gray-800">اللَّهُمَّ لَكَ صُمْتُ وَعَلَى رِزْقِكَ أَفْطَرْتُ بِرَحْمَتِكَ يَا أَرْحَمَ الرَّاحِمِينَ</p>
+                <p class="text-sm italic text-gray-600 mb-2 leading-snug">উচ্চারণ: আল্লাহুম্মা লাকা ছুমতু ওয়া আলা রিযক্বিকা আফতারতু বিরাহমাতিকা ইয়া আরহামার রাহিমিন।</p>
+                <div class="bg-white/50 p-2 rounded text-xs md:text-sm font-medium text-blue-900 leading-snug">
+                    অর্থ: হে আল্লাহ! আমি তোমারই সন্তুষ্টির জন্য রোজা রেখেছি এবং তোমারই দেওয়া রিযিক দ্বারা ইফতার করলাম।
+                </div>
+            </div>
+        </div>
+
+        <!-- Schedule Tables -->
+        <div id="scheduleContainer" class="space-y-6 md:space-y-8">
+            <!-- Template for tables -->
+            <script type="text/template" id="table-template">
+                <div class="bg-white rounded-xl shadow-md overflow-hidden border border-gray-100">
+                    <div class="TITLE_BG_COLOR text-white py-2 px-3 text-center sticky top-0 z-10">
+                        <h2 class="text-lg md:text-2xl font-bold">TITLE_TEXT</h2>
+                    </div>
+                    <div class="overflow-x-auto no-scrollbar">
+                        <table class="w-full text-center whitespace-nowrap text-sm md:text-base">
+                            <thead class="bg-gray-100 text-gray-700 font-semibold border-b">
+                                <tr>
+                                    <th class="px-2 py-3 md:p-3 min-w-[50px]">রমজান</th>
+                                    <th class="px-2 py-3 md:p-3">তারিখ</th>
+                                    <th class="px-2 py-3 md:p-3">বার</th>
+                                    <th class="px-2 py-3 md:p-3 bg-red-50 text-red-700">সেহরি শেষ</th>
+                                    <th class="px-2 py-3 md:p-3 bg-green-50 text-green-700">ইফতার</th>
+                                </tr>
+                            </thead>
+                            <tbody id="TBODY_ID" class="text-gray-700 divide-y"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </script>
+
+            <!-- Rahmat -->
+            <div id="rahmat-section"></div>
+            <!-- Maghfirat -->
+            <div id="maghfirat-section"></div>
+            <!-- Nazat -->
+            <div id="nazat-section"></div>
+        </div>
+
+        <!-- Footer Info -->
+        <div class="mt-6 md:mt-8 bg-yellow-50 border border-yellow-200 p-4 rounded-lg text-sm text-center md:text-left shadow-sm">
+            <h4 class="font-bold text-base md:text-lg mb-2 text-yellow-800 flex items-center justify-center md:justify-start gap-2">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd" /></svg>
+                বিশেষ জ্ঞাতব্য:
+            </h4>
+            <ul class="list-none md:list-disc md:list-inside space-y-2 text-gray-700 text-xs md:text-sm">
+                <li class="bg-white/60 p-2 rounded">সেহরীর শেষ সময়ের ১০ মিনিট পর ফজরের আজান হবে।</li>
+                <li class="bg-white/60 p-2 rounded">আপনার যাকাতের চারভাগের একভাগ এবং আপনার পরিবারের ফিতরা সমূহ আঞ্জুমান পরিচালিত মাদ্রাসা সমূহের এতিম/মিসকিন ফান্ডের জন্য দান করুন।</li>
+            </ul>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-gray-300 py-6 md:py-8 mt-6">
+        <div class="max-w-6xl mx-auto px-4 text-center">
+            
+            <p class="text-xs md:text-sm text-gray-400 mb-4 flex flex-col md:flex-row justify-center items-center gap-2 md:gap-4">
+                <span>Website: <a href="http://ramadan.abswer.com" class="text-yellow-400 hover:text-yellow-300 transition">ramadan.abswer.com</a></span>
+                <span class="hidden md:inline">|</span> 
+                <span>Email: <a href="mailto:abswer@yahoo.com" class="text-yellow-400 hover:text-yellow-300 transition">abswer@yahoo.com</a></span>
+            </p>
+
+            <div class="mt-4 pt-4 border-t border-gray-700 text-[10px] md:text-xs">
+                 <p class="text-gray-500 mb-1">কারিগরি সহযোগিতায়:</p>
+                 <a href="https://www.facebook.com/abswer" target="_blank" class="text-blue-400 hover:text-blue-300 transition font-medium inline-flex items-center gap-1">
+                    Design and Developer: Abswer
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                 </a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Data derived exactly from the uploaded image (2026 Schedule)
+        const scheduleData = [
+            // Rahmat (1-10)
+            { ramadan: '০১', date: '১৯ ফেব্রুয়ারি', day: 'বৃহস্পতিবার', sehri: '৫:০০', iftar: '৫:৫৬', engDate: '2026-02-19' },
+            { ramadan: '০২', date: '২০ ফেব্রুয়ারি', day: 'শুক্রবার', sehri: '৫:০০', iftar: '৫:৫৭', engDate: '2026-02-20' },
+            { ramadan: '০৩', date: '২১ ফেব্রুয়ারি', day: 'শনিবার', sehri: '৪:৫৯', iftar: '৫:৫৭', engDate: '2026-02-21' },
+            { ramadan: '০৪', date: '২২ ফেব্রুয়ারি', day: 'রবিবার', sehri: '৪:৫৮', iftar: '৫:৫৮', engDate: '2026-02-22' },
+            { ramadan: '০৫', date: '২৩ ফেব্রুয়ারি', day: 'সোমবার', sehri: '৪:৫৮', iftar: '৫:৫৮', engDate: '2026-02-23' },
+            { ramadan: '০৬', date: '২৪ ফেব্রুয়ারি', day: 'মঙ্গলবার', sehri: '৪:৫৭', iftar: '৫:৫৯', engDate: '2026-02-24' },
+            { ramadan: '০৭', date: '২৫ ফেব্রুয়ারি', day: 'বুধবার', sehri: '৪:৫৭', iftar: '৬:০০', engDate: '2026-02-25' },
+            { ramadan: '০৮', date: '২৬ ফেব্রুয়ারি', day: 'বৃহস্পতিবার', sehri: '৪:৫৬', iftar: '৬:০০', engDate: '2026-02-26' },
+            { ramadan: '০৯', date: '২৭ ফেব্রুয়ারি', day: 'শুক্রবার', sehri: '৪:৫৬', iftar: '৬:০১', engDate: '2026-02-27' },
+            { ramadan: '১০', date: '২৮ ফেব্রুয়ারি', day: 'শনিবার', sehri: '৪:৫৫', iftar: '৬:০১', engDate: '2026-02-28' },
+
+            // Maghfirat (11-20)
+            { ramadan: '১১', date: '০১ মার্চ', day: 'রবিবার', sehri: '৪:৫৪', iftar: '৬:০২', engDate: '2026-03-01' },
+            { ramadan: '১২', date: '০২ মার্চ', day: 'সোমবার', sehri: '৪:৫৩', iftar: '৬:০২', engDate: '2026-03-02' },
+            { ramadan: '১৩', date: '০৩ মার্চ', day: 'মঙ্গলবার', sehri: '৪:৫৩', iftar: '৬:০২', engDate: '2026-03-03' },
+            { ramadan: '১৪', date: '০৪ মার্চ', day: 'বুধবার', sehri: '৪:৫৩', iftar: '৬:০২', engDate: '2026-03-04' },
+            { ramadan: '১৫', date: '০৫ মার্চ', day: 'বৃহস্পতিবার', sehri: '৪:৫২', iftar: '৬:০৩', engDate: '2026-03-05' },
+            { ramadan: '১৬', date: '০৬ মার্চ', day: 'শুক্রবার', sehri: '৪:৫২', iftar: '৬:০৩', engDate: '2026-03-06' },
+            { ramadan: '১৭', date: '০৭ মার্চ', day: 'শনিবার', sehri: '৪:৫২', iftar: '৬:০৩', engDate: '2026-03-07' },
+            { ramadan: '১৮', date: '০৮ মার্চ', day: 'রবিবার', sehri: '৪:৫০', iftar: '৬:০৪', engDate: '2026-03-08' },
+            { ramadan: '১৯', date: '০৯ মার্চ', day: 'সোমবার', sehri: '৪:৪৯', iftar: '৬:০৪', engDate: '2026-03-09' },
+            { ramadan: '২০', date: '১০ মার্চ', day: 'মঙ্গলবার', sehri: '৪:৪৮', iftar: '৬:০৪', engDate: '2026-03-10' },
+
+            // Nazat (21-30)
+            { ramadan: '২১', date: '১১ মার্চ', day: 'বুধবার', sehri: '৪:৪৭', iftar: '৬:০৪', engDate: '2026-03-11' },
+            { ramadan: '২২', date: '১২ মার্চ', day: 'বৃহস্পতিবার', sehri: '৪:৪৬', iftar: '৬:০৪', engDate: '2026-03-12' },
+            { ramadan: '২৩', date: '১৩ মার্চ', day: 'শুক্রবার', sehri: '৪:৪৫', iftar: '৬:০৪', engDate: '2026-03-13' },
+            { ramadan: '২৪', date: '১৪ মার্চ', day: 'শনিবার', sehri: '৪:৪৪', iftar: '৬:০৫', engDate: '2026-03-14' },
+            { ramadan: '২৫', date: '১৫ মার্চ', day: 'রবিবার', sehri: '৪:৪৩', iftar: '৬:০৫', engDate: '2026-03-15' },
+            { ramadan: '২৬', date: '১৬ মার্চ', day: 'সোমবার', sehri: '৪:৪২', iftar: '৬:০৬', engDate: '2026-03-16' },
+            { ramadan: '২৭', date: '১৭ মার্চ', day: 'মঙ্গলবার', sehri: '৪:৪১', iftar: '৬:০৬', engDate: '2026-03-17' },
+            { ramadan: '২৮', date: '১৮ মার্চ', day: 'বুধবার', sehri: '৪:৪০', iftar: '৬:০৭', engDate: '2026-03-18' },
+            { ramadan: '২৯', date: '১৯ মার্চ', day: 'বৃহস্পতিবার', sehri: '৪:৩৮', iftar: '৬:০৭', engDate: '2026-03-19' },
+            { ramadan: '৩০', date: '২০ মার্চ', day: 'শুক্রবার', sehri: '৪:৩৭', iftar: '৬:০৭', engDate: '2026-03-20' }
+        ];
+
+        // Setup sections using template
+        function setupSections() {
+            const template = document.getElementById('table-template').innerHTML;
+            
+            const createSection = (id, title, colorClass, tbodyId) => {
+                let html = template
+                    .replace('TITLE_TEXT', title)
+                    .replace('TITLE_BG_COLOR', colorClass)
+                    .replace('TBODY_ID', tbodyId);
+                document.getElementById(id).innerHTML = html;
+            }
+
+            createSection('rahmat-section', 'রহমত (১ম ১০ দিন)', 'bg-cyan-600', 'rahmatBody');
+            createSection('maghfirat-section', 'মাগফেরাত (২য় ১০ দিন)', 'bg-purple-600', 'maghfiratBody');
+            createSection('nazat-section', 'নাজাত (৩য় ১০ দিন)', 'bg-teal-600', 'nazatBody');
+        }
+
+        setupSections();
+
+        // Helper to add minutes to time string "HH:MM"
+        function addMinutes(timeStr, minsToAdd) {
+            let [hours, minutes] = timeStr.split(':').map(Number);
+            let date = new Date();
+            date.setHours(hours, minutes, 0, 0);
+            date.setMinutes(date.getMinutes() + parseInt(minsToAdd));
+            
+            let h = date.getHours();
+            let m = date.getMinutes();
+            return `${h}:${m.toString().padStart(2, '0')}`; 
+        }
+
+        // Bengali Numeral Converter
+        function toBengaliNumerals(str) {
+            const numbers = { '0': '০', '1': '১', '2': '২', '3': '৩', '4': '৪', '5': '৫', '6': '৬', '7': '৭', '8': '৮', '9': '৯' };
+            return str.toString().replace(/[0-9]/g, (m) => numbers[m]);
+        }
+
+        function renderTable(data, elementId, offsetMins) {
+            const tbody = document.getElementById(elementId);
+            tbody.innerHTML = '';
+            
+            data.forEach((day, index) => {
+                const enSehri = convertBengaliToEnglishTime(day.sehri);
+                const enIftar = convertBengaliToEnglishTime(day.iftar);
+                
+                const finalSehri = toBengaliNumerals(addMinutes(enSehri, offsetMins));
+                const finalIftar = toBengaliNumerals(addMinutes(enIftar, offsetMins));
+
+                const row = `
+                    <tr class="${index % 2 === 0 ? 'bg-white' : 'bg-gray-50'} hover:bg-yellow-50 transition border-b border-gray-100 last:border-0">
+                        <td class="px-2 py-3 md:p-3 font-medium">${day.ramadan}</td>
+                        <td class="px-2 py-3 md:p-3">${day.date}</td>
+                        <td class="px-2 py-3 md:p-3">${day.day}</td>
+                        <td class="px-2 py-3 md:p-3 font-bold text-red-600">${finalSehri}</td>
+                        <td class="px-2 py-3 md:p-3 font-bold text-green-700">${finalIftar}</td>
+                    </tr>
+                `;
+                tbody.innerHTML += row;
+            });
+        }
+
+        function convertBengaliToEnglishTime(timeStr) {
+            const map = { '০': '0', '১': '1', '২': '2', '৩': '3', '৪': '4', '৫': '5', '৬': '6', '৭': '7', '৮': '8', '৯': '9' };
+            return timeStr.replace(/[০-৯]/g, m => map[m]);
+        }
+
+        function updateSchedule() {
+            const offset = parseInt(document.getElementById('districtSelect').value);
+            renderTable(scheduleData.slice(0, 10), 'rahmatBody', offset);
+            renderTable(scheduleData.slice(10, 20), 'maghfiratBody', offset);
+            renderTable(scheduleData.slice(20, 30), 'nazatBody', offset);
+            updateTimer();
+        }
+
+        // Timer Logic
+        function updateTimer() {
+            const now = new Date();
+            const offset = parseInt(document.getElementById('districtSelect').value);
+            
+            let targetDate = null;
+            let eventName = "";
+            
+            const getEventTime = (dateStr, timeStr, isPM) => {
+                 const [y, m, d] = dateStr.split('-').map(Number);
+                 const [hours, mins] = addMinutes(convertBengaliToEnglishTime(timeStr), offset).split(':').map(Number);
+                 const date = new Date(y, m - 1, d);
+                 date.setHours(isPM ? hours + 12 : hours);
+                 date.setMinutes(mins);
+                 date.setSeconds(0);
+                 return date;
+            };
+
+            for (let day of scheduleData) {
+                const sehriTime = getEventTime(day.engDate, day.sehri, false);
+                const iftarTime = getEventTime(day.engDate, day.iftar, true);
+
+                if (now < sehriTime) {
+                    targetDate = sehriTime;
+                    eventName = `পরবর্তী সেহরি (রমজান ${day.ramadan})`;
+                    break;
+                }
+                if (now < iftarTime) {
+                    targetDate = iftarTime;
+                    eventName = `পরবর্তী ইফতার (রমজান ${day.ramadan})`;
+                    break;
+                }
+            }
+
+            const titleEl = document.getElementById('timerTitle');
+            const timerEl = document.getElementById('countdown');
+            const dateEl = document.getElementById('currentDateDisplay');
+
+            const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+            dateEl.innerText = now.toLocaleDateString('bn-BD', options);
+
+            if (!targetDate) {
+                // Check if all Ramadan days are passed
+                const lastDay = getEventTime(scheduleData[29].engDate, scheduleData[29].iftar, true);
+                if (now > lastDay) {
+                    titleEl.innerText = "রমজান সমাপ্ত";
+                    timerEl.innerText = "ঈদ মোবারক";
+                    timerEl.classList.remove('font-mono');
+                    timerEl.classList.add('text-3xl');
+                    return;
+                }
+                
+                titleEl.innerText = "রমজান ২০২৬ সমাগত";
+                timerEl.innerText = "--:--:--";
+                return;
+            }
+
+            titleEl.innerText = eventName;
+            
+            const diff = targetDate - now;
+            const h = Math.floor((diff / (1000 * 60 * 60)));
+            const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const s = Math.floor((diff % (1000 * 60)) / 1000);
+
+            timerEl.innerText = `${toBengaliNumerals(h)}:${toBengaliNumerals(m.toString().padStart(2, '0'))}:${toBengaliNumerals(s.toString().padStart(2, '0'))} ঘণ্টা`;
+        }
+
+        // Initialize
+        updateSchedule();
+        setInterval(updateTimer, 1000);
+
+    </script>
+</body>
+</html>
